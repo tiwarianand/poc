@@ -31,7 +31,9 @@ c)CREATE TABLE `Department` (
 	primary key (Department_id)
 )
 2)Import EmployeeRegistration project as existing maven project.
-3)Using @angular/cli run EmployeeRegistrationApp project using command.
+3)Run npm install
+4)Using @angular/cli run EmployeeRegistrationApp project using command.
     ng serve
-4)Start spring boot application.
-5)Application will be running on url :- localhost:4200/
+5)Start spring boot application.
+6)Application will be running on url :- localhost:4200/
+7)For running test cases run EmployeeRegistrationApplicationTests.class as Junit test cases.
