@@ -1,9 +1,0 @@
-com.sg.test.app
-com.sg.test.controller
-com.sg.test.dao
-com.sg.test.dto
-com.sg.test.entity
-com.sg.test.exception
-com.sg.test.service
-com.sg.test.service.impl
-com.sg.test.util
