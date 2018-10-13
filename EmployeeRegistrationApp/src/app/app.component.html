@@ -1,0 +1,91 @@
+<h3>
+ Employee Registration
+</h3>
+<div class="container">
+<form class="form-horizontal" ngNativeValidate #empRegistration = "ngForm" (ngSubmit) = "onClickSubmit(empRegistration.value)" >
+        
+        <div class="form-group">
+            <label for="firstname" class="control-label col-sm-2">First Name</label>
+            <div class="col-sm-6">
+                <input type = "text"  class="form-control" name = "firstName" placeholder = "First Name" ngModel required>
+            </div>    
+        </div>
+        <div *ngIf="firstName && firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+
+            <div *ngIf="firstName.errors.required">
+                First Name is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="control-label col-sm-2">Last Name</label>
+            <div class="col-sm-6">
+                <input type = "text" class="form-control" name = "lastName" placeholder = "Last Name" ngModel>
+            </div>    
+        </div>
+                        
+        <div class="form-group">
+            <label for="gender" class="control-label col-sm-2">Gender</label>
+            <div class="col-sm-6">
+                <select class="form-control" name="gender"  [(ngModel)]="selectedGender">
+                    <option  *ngFor="let c of genders" [ngValue]="c.name" > {{c.name}} </option>
+                </select>
+                
+            </div>    
+        </div>
+        <div class="form-group">
+            <label for="dob" class="control-label col-sm-2">Date Of Birth</label>
+            <div class="col-sm-6">
+                <input type = "date" class="form-control" name = "dob" placeholder = "Date Of Birth" ngModel>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="departmentName" class="control-label col-sm-2">Department</label>
+            <div class="col-sm-6">
+                <input type = "text" class="form-control" name = "departmentName" placeholder = "Department" ngModel>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6">
+                <input type = "submit" class="btn btn-success" value = "Register">
+            </div>
+        </div>
+</form>
+</div>
+<h3>
+Registered Employees
+</h3>
+
+<div class="container">
+<mat-table #table *ngIf = "dataSource" [dataSource]="emp" matSort >
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dob">
+        <mat-header-cell *matHeaderCellDef> Date Of Birth </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.dob}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="department?.departmentName">
+        <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.department?.departmentName}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="5" [pageSize]="3" [pageSizeOptions]="[5, 10, 25]">
+</mat-paginator>
+</div>
+
